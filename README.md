@@ -1,2 +1,1 @@
-# next-firebase-chatapp
-A realtime chat app implemented by Next.js and firebase
+This is a starter template for [Learn Next.js](https://nextjs.org/learn).
