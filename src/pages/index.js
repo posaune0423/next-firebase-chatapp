@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1,
-    color: 'rgba(0, 0, 0, 0.87)'
+    flexGrow: 1
   }
 }))
 
@@ -75,7 +74,7 @@ export default function Home() {
               <MenuItem onClick={handleClose}>Coming</MenuItem>
               <MenuItem onClick={handleClose}>Soon</MenuItem>
             </Menu>
-            <Typography variant="h6" color="default" className={classes.title}>
+            <Typography variant="h6" component="span" color="textPrimary" className={classes.title}>
               Curabitur
             </Typography>
             <LogOut />
@@ -93,7 +92,7 @@ export default function Home() {
           <title>Login Page</title>
         </Head>
         <h2>Curabitur</h2>
-        <p>Next n firebase  realtime chat app</p>
+        <p>Next n firebase realtime chat app</p>
         <div className={indexStyles.login}>
           <FirebaseAuth />
         </div>
