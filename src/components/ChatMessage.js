@@ -34,7 +34,7 @@ function ChatMessage(props) {
           src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'}
           className={chatmessageStyles.img}
         />
-        <p className={chatmessageStyles.p}>
+        <div className={chatmessageStyles.div}>
           {text}
           {text && <br />}
           {attachment && (
@@ -42,7 +42,7 @@ function ChatMessage(props) {
               <Image src={fetchedImage} width={84} height={84} />
             </a>
           )}
-        </p>
+        </div>
       </div>
       <style jsx>{`
         .message {
@@ -54,13 +54,13 @@ function ChatMessage(props) {
           flex-direction: row-reverse;
         }
 
-        .sent p {
+        .sent > div {
           color: #23223;
           background: #e8e8e8;
           align-self: flex-end;
         }
 
-        .received p {
+        .received > div {
           color: black;
           background: #e8e8e8;
         }

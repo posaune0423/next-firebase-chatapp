@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import firebase from '../lib/firebase'
 import 'firebase/storage'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useCollectionData, useCollectionDataOnce } from 'react-firebase-hooks/firestore'
 import ChatMessage from './ChatMessage'
 import SendIcon from '@material-ui/icons/Send'
 import ImageIcon from '@material-ui/icons/Image'
@@ -12,7 +12,7 @@ function ChatRoom() {
   const auth = firebase.auth()
   const firestore = firebase.firestore()
   const messagesRef = firestore.collection('messages')
-  const query = messagesRef.orderBy('createdAt').limit(25)
+  const query = messagesRef.orderBy('createdAt').limit(100)
 
   const [messages] = useCollectionData(query, { idField: 'id' })
   const [formValue, setFormValue] = useState('')
@@ -23,7 +23,6 @@ function ChatRoom() {
     e.preventDefault()
 
     const { uid, photoURL } = auth.currentUser
-
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -40,9 +39,7 @@ function ChatRoom() {
   const saveImage = (file) => {
     const storageRef = firebase.storage().ref()
     const fileRef = storageRef.child(file.name)
-    fileRef.put(file).then((result) => {
-      // console.log(result)
-    })
+    fileRef.put(file)
   }
 
   const setImage = (e) => {
@@ -79,7 +76,7 @@ function ChatRoom() {
           <input
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
-            placeholder="say something nice"
+            placeholder="Enter a message"
             className={chatroomStyles.input}
           />
 
