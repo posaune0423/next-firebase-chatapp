@@ -15,7 +15,7 @@ function ChatMessage(props) {
     fileRef
       .getDownloadURL()
       .then((path) => {
-        console.log(path)
+        // console.log(path)
         setfetchedImage(path)
       })
       .catch((error) => {
