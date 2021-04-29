@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 function ChatMessage(props) {
   const { text, uid, photoURL, attachment } = props.message
   const messageClass = uid === firebase.auth().currentUser.uid ? 'sent' : 'received'
-  const [fetchedImage, setfetchedImage] = useState('/../../../public/images/nouser.jpg')
+  const [fetchedImage, setfetchedImage] = useState('/images/empty.jpg')
 
   const getImage = (filename) => {
     const fileRef = firebase.storage().ref(filename)
