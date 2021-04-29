@@ -37,7 +37,7 @@
 .top {
   width: 100vw;
   height: 100vh;
-  background-image: url(../../../public/images/brisbane_river.jpeg);
+  background-image: url(/images/brisbane_river.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
