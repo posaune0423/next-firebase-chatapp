@@ -39,11 +39,10 @@ export default function Home() {
   }
 
   if (user) {
-    // console.log(user)
     return (
       <div>
         <Head>
-          <title>Test Next App</title>
+          <title>Curabitur | Chat Room</title>
         </Head>
         <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
           <Toolbar>
@@ -89,7 +88,7 @@ export default function Home() {
     return (
       <div className={indexStyles.top}>
         <Head>
-          <title>Login Page</title>
+          <title>Curabitur | Login</title>
         </Head>
         <h2>Curabitur</h2>
         <p>Next n firebase realtime chat app</p>
