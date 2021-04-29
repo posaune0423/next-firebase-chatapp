@@ -22,9 +22,13 @@ After the process above have been done, you should get firebase config object li
   };
   firebase.initializeApp(config);
 ```
-then, rename or duplicate `.env.local.sample` and name it as `.env.local`
+create `.env.local` by running below
 
-and please copy these api key values and paste them in `.env.local`
+```bash
+cp -pr .env.local.sample .env.local
+```
+
+then copy these api key values and paste them in `.env.local`
 
 Now, you got ready for developing !
 
