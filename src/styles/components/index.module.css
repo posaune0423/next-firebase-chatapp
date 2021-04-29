@@ -42,6 +42,8 @@
 }
 
 .top::before {
+  width: 100vw;
+  height: 100vh;
   /* 透過した黒を上から重ねるイメージ */
   background-color: rgba(0, 0, 0, 0.4);
   /* 自由に位置指定 */
