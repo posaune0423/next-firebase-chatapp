@@ -16,7 +16,7 @@ function LogOut() {
 
   return (
     <>
-      <Button color="inherit" onClick={signOut}>
+      <Button variant="contained" color="default" onClick={signOut}>
         Logout
       </Button>
     </>
