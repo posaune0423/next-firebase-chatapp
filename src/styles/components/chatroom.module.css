@@ -11,13 +11,13 @@
   width: 0.25rem;
 }
 
-.main::-webkit-scrollbar-track {
-  /* background: #1e1e24; */
+/* .main::-webkit-scrollbar-track {
+  background: #1976d2;
 }
 
 .main::-webkit-scrollbar-thumb {
-  /* background: #6649b8; */
-}
+  background: #454545;
+} */
 
 .form {
   height: 10vh;
