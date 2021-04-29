@@ -2,20 +2,23 @@ module.exports = {
   root: true,
   env: {
     browser: true,
+    es6: true,
     node: true
   },
-  extends: [
-    'prettier',
-  ],
   parserOptions: {
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
+    ecmaVersion: 2020,
     ecmaFeatures: {
       jsx: true,
+      experimentalObjectRestSpread: true
     },
-    ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: 'module'
   },
+  plugins: ['@babel'],
+  extends: ['prettier'],
   rules: {
-    'semi': ['error', 'never'],
+    semi: ['error', 'never'],
     'arrow-parens': 'off',
     'no-console': 'off',
     'no-irregular-whitespace': 'off',
@@ -26,5 +29,5 @@ module.exports = {
     'react/prop-types': 'off',
     'react/default-props-match-prop-types': 'off',
     'react/require-default-props': 'off'
-  },
+  }
 }
