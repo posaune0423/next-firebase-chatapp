@@ -88,7 +88,7 @@ function ChatRoom() {
             disabled={!formValue && !fileFormData}
             className={chatroomStyles.button}
           >
-            <SendIcon color="primary" />
+            <SendIcon color={formValue || fileFormData ? 'primary' : 'disabled'} />
           </button>
         </form>
       </div>
