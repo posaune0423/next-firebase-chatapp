@@ -61,7 +61,17 @@
   position: relative;
   top: 38vh;
   font-weight: bold;
+  font-family: 'Krona One', sans-serif;
   color: aliceblue;
+}
+
+.top p {
+  text-align: center;
+  position: relative;
+  top: 42vh;
+  color: aliceblue;
+  font-size: 0.8rem;
+  font-family: 'Krona One', sans-serif;
 }
 
 .login {
