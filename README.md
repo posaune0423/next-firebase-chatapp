@@ -4,8 +4,8 @@
 A simple realtime chat application implemented by Next.js and Firebase.
 
 ## Prerequisite
-- yarn
-- Firebase Account
+- yarn 🐱
+- Firebase Account 🔥
 
 ## Development
 First, you have to get firebase api key. if you are not familier with firebase, just check it out from [here](https://support.google.com/firebase/answer/7015592?authuser=0)
