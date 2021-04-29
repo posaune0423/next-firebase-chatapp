@@ -83,7 +83,11 @@ function ChatRoom() {
             className={chatroomStyles.input}
           />
 
-          <button type="submit" disabled={!formValue && !fileFormData} className={chatroomStyles.button}>
+          <button
+            type="submit"
+            disabled={!formValue && !fileFormData}
+            className={chatroomStyles.button}
+          >
             <SendIcon color="primary" />
           </button>
         </form>
