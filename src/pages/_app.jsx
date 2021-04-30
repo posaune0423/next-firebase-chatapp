@@ -1,4 +1,3 @@
-import { AppProps } from 'next/app'
 import Head from 'next/head'
 import '../styles/global.css'
 
@@ -12,7 +11,6 @@ const App = ({ Component, pageProps }) => (
         href="https://fonts.googleapis.com/css2?family=Krona+One&family=Noto+Sans+JP:wght@300&display=swap"
         rel="stylesheet"
       />
-      {/* <link rel="manifest" href="/manifest.json" /> */}
     </Head>
     <Component {...pageProps} />
   </>

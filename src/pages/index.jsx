@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import firebase from '../lib/firebase'
-import FirebaseAuth from '../components/FirebaseAuth'
 import ChatRoom from '../components/ChatRoom'
+import FirebaseAuth from '../components/FirebaseAuth'
 import Header from '../components/Header'
 import indexStyles from '../styles/components/index.module.css'
 

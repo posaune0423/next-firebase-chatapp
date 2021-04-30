@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import firebase from '../lib/firebase'
 import 'firebase/storage'
-import chatmessageStyles from '../styles/components/chatmessage.module.css'
 import { Avatar } from '@material-ui/core'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import chatmessageStyles from '../styles/components/chatmessage.module.css'
 
-function ChatMessage(props) {
+export default function ChatMessage(props) {
   const { text, uid, photoURL, attachment } = props.message
   const messageClass = uid === firebase.auth().currentUser.uid ? 'sent' : 'received'
   const [fetchedImage, setfetchedImage] = useState('/images/empty.jpg')
@@ -68,5 +68,3 @@ function ChatMessage(props) {
     </>
   )
 }
-
-export default ChatMessage
