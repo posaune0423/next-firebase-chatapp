@@ -13,8 +13,8 @@ const firebaseAuthConfig = {
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      requireDisplayName: false,
-    },
+      requireDisplayName: false
+    }
   ],
   signInSuccessUrl: '/',
   credentialHelper: 'none',
@@ -23,8 +23,8 @@ const firebaseAuthConfig = {
     signInSuccessWithAuthResult: () =>
       // Don't automatically redirect. We handle redirecting based on
       // auth state in withAuthComponent.js.
-      false,
-  },
+      false
+  }
 }
 
 const FirebaseAuth = () => {
@@ -35,14 +35,11 @@ const FirebaseAuth = () => {
     if (typeof window !== 'undefined') {
       setRenderAuth(true)
     }
-  }, [])
+  })
   return (
     <div>
       {renderAuth ? (
-        <StyledFirebaseAuth
-          uiConfig={firebaseAuthConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        <StyledFirebaseAuth uiConfig={firebaseAuthConfig} firebaseAuth={firebase.auth()} />
       ) : null}
     </div>
   )
