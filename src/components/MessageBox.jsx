@@ -12,6 +12,7 @@ export default function MessageBox() {
   const [fileFormData, setfileFormData] = useState('')
   const hasImage = fileFormData ? true : false
   const messagesRef = firestore.collection('messages')
+  const storageRef = firebase.storage().ref()
 
   const sendMessage = async (e) => {
     e.preventDefault()
@@ -30,7 +31,6 @@ export default function MessageBox() {
   }
 
   const saveImage = (file) => {
-    const storageRef = firebase.storage().ref()
     const fileRef = storageRef.child(file.name)
     fileRef.put(file)
   }
