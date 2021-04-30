@@ -39,7 +39,7 @@ export default function ChatMessage(props) {
           {text && <br />}
           {attachment && (
             <a href={fetchedImage}>
-              <Image src={fetchedImage} objectFit="cover" width={84} height={84} />
+              <Image src={fetchedImage} objectFit="contain" width={150} height={80} />
             </a>
           )}
         </div>
