@@ -1,42 +1,13 @@
 import Head from 'next/head'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useState } from 'react'
 import firebase from '../lib/firebase'
 import FirebaseAuth from '../components/FirebaseAuth'
-import LogOut from '../components/LogOut'
 import ChatRoom from '../components/ChatRoom'
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
-import { makeStyles } from '@material-ui/core/styles'
-import MenuIcon from '@material-ui/icons/Menu'
+import Header from '../components/Header'
 import indexStyles from '../styles/components/index.module.css'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1
-  }
-}))
 
 export default function Home() {
   const [user] = useAuthState(firebase.auth())
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
-  const open = Boolean(anchorEl)
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
 
   if (user) {
     return (
@@ -44,41 +15,8 @@ export default function Home() {
         <Head>
           <title>Curabitur | Chat Room</title>
         </Head>
-        <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="default"
-              aria-label="menu"
-              onClick={handleMenu}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Coming</MenuItem>
-              <MenuItem onClick={handleClose}>Soon</MenuItem>
-            </Menu>
-            <Typography variant="h6" component="span" color="textPrimary" className={classes.title}>
-              Curabitur
-            </Typography>
-            <LogOut />
-          </Toolbar>
-        </AppBar>
+        <Header />
+
         <section className={indexStyles.appSection}>
           <ChatRoom />
         </section>
