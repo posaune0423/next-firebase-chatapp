@@ -1,57 +1,21 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 import firebase from '../lib/firebase'
 import 'firebase/storage'
-import { useCollectionData, useCollectionDataOnce } from 'react-firebase-hooks/firestore'
 import ChatMessage from './ChatMessage'
-import SendIcon from '@material-ui/icons/Send'
-import ImageIcon from '@material-ui/icons/Image'
+import MessageBox from './MessageBox'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
-function ChatRoom() {
-  const dummy = useRef()
-  const auth = firebase.auth()
+export default function ChatRoom() {
   const firestore = firebase.firestore()
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt').limit(100)
-
   const [messages] = useCollectionData(query, { idField: 'id' })
-  const [formValue, setFormValue] = useState('')
-  const [fileFormData, setfileFormData] = useState()
-  const hasImage = fileFormData ? true : false
+  const dummy = useRef()
 
-  const sendMessage = async (e) => {
-    e.preventDefault()
-
-    const { uid, photoURL } = auth.currentUser
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL,
-      attachment: fileFormData ? fileFormData.name : null
-    })
-
-    setFormValue('')
-    setfileFormData('')
+  useEffect(() => {
     dummy.current.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const saveImage = (file) => {
-    const storageRef = firebase.storage().ref()
-    const fileRef = storageRef.child(file.name)
-    fileRef.put(file)
-  }
-
-  const setImage = (e) => {
-    if (!e.target.files) return
-    const file = e.target.files[0]
-    setfileFormData(file)
-    saveImage(file)
-  }
-
-  const clickInput = () => {
-    document.getElementById('image_input').click()
-  }
+  }, [messages])
 
   return (
     <>
@@ -62,35 +26,8 @@ function ChatRoom() {
       </main>
 
       <div>
-        <form onSubmit={sendMessage} className={chatroomStyles.form}>
-          <div className={chatroomStyles.image}>
-            <ImageIcon color={hasImage ? 'disabled' : 'primary'} onClick={clickInput} />
-            <input
-              type="file"
-              accept="image/*,.png,.jpg,.jpeg,.gif"
-              id="image_input"
-              value=""
-              onChange={(e) => setImage(e)}
-            />
-          </div>
-          <input
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-            placeholder="Enter a message"
-            className={chatroomStyles.input}
-          />
-
-          <button
-            type="submit"
-            disabled={!formValue && !fileFormData}
-            className={chatroomStyles.button}
-          >
-            <SendIcon color={formValue || fileFormData ? 'primary' : 'disabled'} />
-          </button>
-        </form>
+        <MessageBox />
       </div>
     </>
   )
 }
-
-export default ChatRoom
