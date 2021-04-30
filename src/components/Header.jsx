@@ -61,8 +61,16 @@ export default function Header() {
           open={open}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}><Link href="https://github.com/posaune0423/next-firebase-chatapp" color="inherit"><GitHubIcon /></Link></MenuItem>
-          <MenuItem onClick={handleClose}><Link href="https://www.linkedin.com/in/posaune0423/" color="inherit"><LinkedInIcon /></Link></MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link href="https://github.com/posaune0423/next-firebase-chatapp" color="inherit">
+              <GitHubIcon />
+            </Link>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link href="https://www.linkedin.com/in/posaune0423/" color="inherit">
+              <LinkedInIcon />
+            </Link>
+          </MenuItem>
         </Menu>
         <Typography variant="h6" component="span" color="textPrimary" className={classes.title}>
           Curabitur
