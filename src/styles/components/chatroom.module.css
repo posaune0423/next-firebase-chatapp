@@ -1,6 +1,5 @@
 .main {
   padding: 10px;
-  /* height: 80vh; */
   margin-bottom: 10vh;
   overflow-y: scroll;
   display: flex;
@@ -11,24 +10,15 @@
   width: 0.25rem;
 }
 
-/* .main::-webkit-scrollbar-track {
-  background: #1976d2;
-}
-
-.main::-webkit-scrollbar-thumb {
-  background: #454545;
-} */
-
 .form {
   height: 8vh;
   position: fixed;
   bottom: 0;
-  /* background-color: rgb(24, 23, 23);/ */
   width: 100%;
-  /* max-width: 728px; */
   display: flex;
   font-size: 0.8rem;
   box-shadow: 0 0px 1px 0px #454545;
+  background-color: white;
 }
 
 .form div {
@@ -37,7 +27,6 @@
 
 .form button {
   width: 8vh;
-  /* background-color: rgb(56, 56, 143); */
 }
 
 .image {
@@ -81,6 +70,5 @@
 }
 
 .button:disabled {
-  /* opacity: 0.5; */
   cursor: not-allowed;
 }
