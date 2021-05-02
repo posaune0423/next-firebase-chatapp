@@ -1,9 +1,6 @@
 import firebase from '../lib/firebase'
+import { AuthContextProps } from '../types/util'
 import { FC, createContext, useEffect, useState } from 'react'
-
-type AuthContextProps = {
-  currentUser: firebase.User | null | undefined
-}
 
 const AuthContext = createContext<AuthContextProps>({ currentUser: undefined })
 

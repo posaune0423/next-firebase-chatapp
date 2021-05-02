@@ -1,18 +1,10 @@
 import { useState, useContext } from 'react'
 import { FirebaseContext } from '../components/Firebase'
-import firebase from 'firebase/app'
+import firebase from 'firebase/app' // TODO imported temporarily to solve type problem with FieldValue
 import SendIcon from '@material-ui/icons/Send'
 import ImageIcon from '@material-ui/icons/Image'
+import { File } from '../types/util'
 import chatroomStyles from '../styles/components/chatroom.module.css'
-
-type File = {
-  lastModified: number
-  lastModifiedDate: Date
-  name: string
-  size: number
-  type: string
-  webkitRelativePath: string
-}
 
 export default function MessageBox(): JSX.Element {
   const { currentFirebase } = useContext(FirebaseContext)
@@ -27,8 +19,6 @@ export default function MessageBox(): JSX.Element {
 
   const sendMessage = async (e) => {
     e.preventDefault()
-
-    console.log(fileFormData)
 
     const { uid, photoURL } = auth.currentUser
     await messagesRef.add({
