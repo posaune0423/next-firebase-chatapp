@@ -1,15 +1,16 @@
 import Head from 'next/head'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import firebase from '../lib/firebase'
+import { useContext } from 'react'
+import { AuthContext } from '../components/Auth'
+import { FirebaseProvider } from '../components/Firebase'
 import ChatRoom from '../components/ChatRoom'
-import FirebaseAuth from '../components/FirebaseAuth'
+import { LogIn } from '../components/Buttons'
 import Header from '../components/Header'
 import indexStyles from '../styles/components/index.module.css'
 
 export default function Home() {
-  const [user] = useAuthState(firebase.auth())
+  const { currentUser } = useContext(AuthContext)
 
-  if (user) {
+  if (currentUser) {
     return (
       <div>
         <Head>
@@ -18,7 +19,9 @@ export default function Home() {
         <Header />
 
         <section className={indexStyles.appSection}>
-          <ChatRoom />
+          <FirebaseProvider>
+            <ChatRoom />
+          </FirebaseProvider>
         </section>
       </div>
     )
@@ -31,7 +34,7 @@ export default function Home() {
         <h2>Curabitur</h2>
         <p>Next n firebase realtime chat app</p>
         <div className={indexStyles.login}>
-          <FirebaseAuth />
+          <LogIn />
         </div>
       </div>
     )

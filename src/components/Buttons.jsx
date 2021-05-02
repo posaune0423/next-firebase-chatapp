@@ -1,7 +1,12 @@
+import FirebaseAuth from './FirebaseAuth'
 import { Button } from '@material-ui/core'
 import firebase from '../lib/firebase'
 
-export default function LogOut() {
+const LogIn = () => {
+  return <FirebaseAuth />
+}
+
+const LogOut = () => {
   function signOut() {
     firebase
       .auth()
@@ -22,3 +27,5 @@ export default function LogOut() {
     </>
   )
 }
+
+export { LogIn, LogOut }

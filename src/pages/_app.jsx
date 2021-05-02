@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { AuthProvider } from '../components/Auth'
 import '../styles/global.css'
 
 const App = ({ Component, pageProps }) => (
@@ -12,7 +13,9 @@ const App = ({ Component, pageProps }) => (
         rel="stylesheet"
       />
     </Head>
-    <Component {...pageProps} />
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
   </>
 )
 

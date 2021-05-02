@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import LogOut from '../components/LogOut'
+import { LogOut } from '../components/Buttons'
 
 export default function Header() {
   const useStyles = makeStyles((theme) => ({

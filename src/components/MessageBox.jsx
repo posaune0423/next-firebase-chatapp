@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import firebase from '../lib/firebase'
-import 'firebase/storage'
+import { useState, useContext } from 'react'
+import { FirebaseContext } from '../components/Firebase'
 import SendIcon from '@material-ui/icons/Send'
 import ImageIcon from '@material-ui/icons/Image'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
 export default function MessageBox() {
-  const firestore = firebase.firestore()
-  const auth = firebase.auth()
+  const { currentFirebase } = useContext(FirebaseContext)
   const [formValue, setFormValue] = useState('')
   const [fileFormData, setfileFormData] = useState('')
+
+  const firestore = currentFirebase.firestore()
+  const auth = currentFirebase.auth()
   const hasImage = fileFormData ? true : false
   const messagesRef = firestore.collection('messages')
-  const storageRef = firebase.storage().ref()
+  const storageRef = currentFirebase.storage().ref()
 
   const sendMessage = async (e) => {
     e.preventDefault()
@@ -20,7 +21,7 @@ export default function MessageBox() {
     const { uid, photoURL } = auth.currentUser
     await messagesRef.add({
       text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: currentFirebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL,
       attachment: fileFormData ? fileFormData.name : null
