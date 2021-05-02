@@ -2,11 +2,11 @@ import FirebaseAuth from './FirebaseAuth'
 import { Button } from '@material-ui/core'
 import firebase from '../lib/firebase'
 
-const LogIn = () => {
+const LogIn = (): JSX.Element => {
   return <FirebaseAuth />
 }
 
-const LogOut = () => {
+const LogOut = (): JSX.Element => {
   function signOut() {
     firebase
       .auth()
