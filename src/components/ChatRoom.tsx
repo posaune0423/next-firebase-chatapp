@@ -12,7 +12,7 @@ export default function ChatRoom(): JSX.Element {
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt').limit(100)
   const [messages] = useCollectionData(query, { idField: 'id' })
-  const dummy: any = useRef()
+  const dummy = useRef<HTMLElement>(null)
 
   useEffect(() => {
     dummy.current.scrollIntoView({ behavior: 'smooth' })
