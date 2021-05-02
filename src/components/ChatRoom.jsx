@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import firebase from '../lib/firebase'
+import { FirebaseContext } from '../components/Firebase'
 import 'firebase/storage'
 import ChatMessage from './ChatMessage'
 import MessageBox from './MessageBox'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
 export default function ChatRoom() {
-  const firestore = firebase.firestore()
+  const { currentFirebase } = useContext(FirebaseContext)
+
+  const firestore = currentFirebase.firestore()
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt').limit(100)
   const [messages] = useCollectionData(query, { idField: 'id' })

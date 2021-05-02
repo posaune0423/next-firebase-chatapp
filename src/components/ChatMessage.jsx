@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import firebase from '../lib/firebase'
-import 'firebase/storage'
 import { Avatar } from '@material-ui/core'
 import chatmessageStyles from '../styles/components/chatmessage.module.css'
 
