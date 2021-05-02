@@ -6,7 +6,7 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: '@babel/eslint-parser',
+    parser: '@typescript-eslint/parser',
     requireConfigFile: false,
     ecmaVersion: 2020,
     ecmaFeatures: {
@@ -15,8 +15,13 @@ module.exports = {
     },
     sourceType: 'module'
   },
-  plugins: ['@babel'],
-  extends: ['prettier'],
+  plugins: ['@typescript-eslint'],
+  extends: ['prettier', 'plugin:@typescript-eslint/recommended'],
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx']
+    }
+  ],
   rules: {
     semi: ['error', 'never'],
     'arrow-parens': 'off',
