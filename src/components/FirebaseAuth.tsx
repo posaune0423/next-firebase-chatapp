@@ -1,5 +1,5 @@
 /* globals window */
-import React, { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import firebase from 'firebase/app'
 
@@ -27,7 +27,7 @@ const firebaseAuthConfig = {
   }
 }
 
-const FirebaseAuth = () => {
+const FirebaseAuth: FC = () => {
   // Do not SSR FirebaseUI, because it is not supported.
   // https://github.com/firebase/firebaseui-web/issues/213
   const [renderAuth, setRenderAuth] = useState(false)

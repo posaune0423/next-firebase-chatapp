@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -9,7 +8,7 @@ import GitHubIcon from '@material-ui/icons/GitHub'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import { LogOut } from '../components/Buttons'
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1
@@ -62,14 +61,17 @@ export default function Header() {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <Link href="https://github.com/posaune0423/next-firebase-chatapp" color="inherit">
+            <a
+              href="https://github.com/posaune0423/next-firebase-chatapp"
+              style={{ color: 'inherit' }}
+            >
               <GitHubIcon />
-            </Link>
+            </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link href="https://www.linkedin.com/in/posaune0423/" color="inherit">
+            <a href="https://www.linkedin.com/in/posaune0423/" style={{ color: 'inherit' }}>
               <LinkedInIcon />
-            </Link>
+            </a>
           </MenuItem>
         </Menu>
         <Typography variant="h6" component="span" color="textPrimary" className={classes.title}>

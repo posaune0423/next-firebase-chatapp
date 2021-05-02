@@ -4,7 +4,7 @@ import firebase from '../lib/firebase'
 import { Avatar } from '@material-ui/core'
 import chatmessageStyles from '../styles/components/chatmessage.module.css'
 
-export default function ChatMessage(props) {
+export default function ChatMessage(props: firebase.firestore.DocumentData): JSX.Element {
   const { text, uid, photoURL, attachment } = props.message
   const messageClass = uid === firebase.auth().currentUser.uid ? 'sent' : 'received'
   const [fetchedImage, setfetchedImage] = useState('/images/empty.jpg')

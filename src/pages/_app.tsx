@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import { FC } from 'react'
 import { AuthProvider } from '../components/Auth'
 import '../styles/global.css'
 
-const App = ({ Component, pageProps }) => (
+const App: FC = ({ Component, pageProps }) => (
   <>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

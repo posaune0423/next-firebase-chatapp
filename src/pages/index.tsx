@@ -7,7 +7,7 @@ import { LogIn } from '../components/Buttons'
 import Header from '../components/Header'
 import indexStyles from '../styles/components/index.module.css'
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const { currentUser } = useContext(AuthContext)
 
   if (currentUser) {

@@ -1,13 +1,23 @@
 import { useState, useContext } from 'react'
 import { FirebaseContext } from '../components/Firebase'
+import firebase from 'firebase/app'
 import SendIcon from '@material-ui/icons/Send'
 import ImageIcon from '@material-ui/icons/Image'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
-export default function MessageBox() {
+type File = {
+  lastModified: number
+  lastModifiedDate: Date
+  name: string
+  size: number
+  type: string
+  webkitRelativePath: string
+}
+
+export default function MessageBox(): JSX.Element {
   const { currentFirebase } = useContext(FirebaseContext)
-  const [formValue, setFormValue] = useState('')
-  const [fileFormData, setfileFormData] = useState('')
+  const [formValue, setFormValue] = useState<string>('')
+  const [fileFormData, setfileFormData] = useState<File | undefined>(undefined)
 
   const firestore = currentFirebase.firestore()
   const auth = currentFirebase.auth()
@@ -18,17 +28,19 @@ export default function MessageBox() {
   const sendMessage = async (e) => {
     e.preventDefault()
 
+    console.log(fileFormData)
+
     const { uid, photoURL } = auth.currentUser
     await messagesRef.add({
       text: formValue,
-      createdAt: currentFirebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL,
       attachment: fileFormData ? fileFormData.name : null
     })
 
     setFormValue('')
-    setfileFormData('')
+    setfileFormData(undefined)
   }
 
   const saveImage = (file) => {
