@@ -10,7 +10,7 @@ const FirebaseProvider: FC = ({ children }) => {
 
   useEffect(() => {
     firebase && setCurrentFirebase(firebase.app())
-  })
+  }, [])
 
   return (
     <FirebaseContext.Provider value={{ currentFirebase: currentFirebase }}>

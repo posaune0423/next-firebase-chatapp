@@ -1,17 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
 import firebase from '../lib/firebase'
+import { FirebaseContext } from '../components/Firebase'
 import { Avatar } from '@material-ui/core'
+import Modal from '@material-ui/core/Modal'
 import chatmessageStyles from '../styles/components/chatmessage.module.css'
 
 export default function ChatMessage(props: firebase.firestore.DocumentData): JSX.Element {
+  const { currentFirebase } = useContext(FirebaseContext)
   const { text, uid, photoURL, attachment } = props.message
-  const messageClass = uid === firebase.auth().currentUser.uid ? 'sent' : 'received'
+  const messageClass = uid === currentFirebase.auth().currentUser.uid ? 'sent' : 'received'
   const [fetchedImage, setfetchedImage] = useState('/images/empty.jpg')
+  const [senderData, setSenderData] = useState(undefined)
+  const [open, setOpen] = useState(false)
 
   const getImage = (filename) => {
-    const fileRef = firebase.storage().ref(filename)
-    fileRef
+    currentFirebase
+      .storage()
+      .ref(filename)
       .getDownloadURL()
       .then((path) => {
         // console.log(path)
@@ -22,9 +28,32 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
       })
   }
 
+  const getUser = (uid) => {
+    currentFirebase
+      .firestore()
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setSenderData(doc.data())
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const handleOpen = () => {
+    getUser(uid)
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   useEffect(() => {
     attachment && getImage(attachment)
-  })
+  }, [])
 
   return (
     <>
@@ -32,7 +61,35 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
         <Avatar
           src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'}
           className={chatmessageStyles.img}
+          onClick={handleOpen}
         />
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <div className={chatmessageStyles.modal}>
+            <Avatar
+              style={{ height: '70px', width: '70px', margin: '0 auto' }}
+              src={
+                senderData
+                  ? senderData.photoURL
+                  : 'https://api.adorable.io/avatars/23/abott@adorable.png'
+              }
+            />
+            <h2 id="simple-modal-title" style={{ textAlign: 'center' }}>
+              {senderData && senderData.displayName}
+            </h2>
+            <p id="simple-modal-description" style={{ fontSize: '12px', textAlign: 'center' }}>
+              {senderData && senderData.email}
+            </p>
+            <h4>Bio</h4>
+            <p>
+            {senderData && senderData.bio}
+            </p>
+          </div>
+        </Modal>
         <div className={chatmessageStyles.div}>
           {text}
           {text && <br />}
