@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
+import { AppBar, Toolbar, IconButton, Typography, Menu, MenuItem } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
