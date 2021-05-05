@@ -3,8 +3,8 @@ import { useContext } from 'react'
 import { AuthContext } from '../components/Auth'
 import { FirebaseProvider } from '../components/Firebase'
 import ChatRoom from '../components/ChatRoom'
-import { LogIn } from '../components/Buttons'
 import Header from '../components/Header'
+import Top from '../components/Top'
 import indexStyles from '../styles/components/index.module.css'
 
 export default function Home(): JSX.Element {
@@ -26,17 +26,6 @@ export default function Home(): JSX.Element {
       </div>
     )
   } else {
-    return (
-      <div className={indexStyles.top}>
-        <Head>
-          <title>Curabitur | Login</title>
-        </Head>
-        <h2>Curabitur</h2>
-        <p>Next n firebase realtime chat app</p>
-        <div className={indexStyles.login}>
-          <LogIn />
-        </div>
-      </div>
-    )
+    return <Top />
   }
 }
