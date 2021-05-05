@@ -13,3 +13,20 @@
 .img {
   margin: 2px 5px;
 }
+
+.modal {
+  position: absolute;
+  top: 20vh;
+  bottom: 20vh;
+  right: 10vw;
+  left: 10vw;
+  border: 1px solid #232323;
+  border-radius: 1rem;
+  background-color: #fff;
+  padding: 32px 24px 24px;
+}
+
+.modal:focus-visible {
+  border-radius: 1rem;
+  outline: #1976d2 auto 1px im !important;
+}

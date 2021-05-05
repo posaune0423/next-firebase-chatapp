@@ -1,20 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
 import firebase from '../lib/firebase'
+import { FirebaseContext } from '../components/Firebase'
 import { Avatar } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import chatmessageStyles from '../styles/components/chatmessage.module.css'
 
 export default function ChatMessage(props: firebase.firestore.DocumentData): JSX.Element {
+  const { currentFirebase } = useContext(FirebaseContext)
   const { text, uid, photoURL, attachment } = props.message
-  const messageClass = uid === firebase.auth().currentUser.uid ? 'sent' : 'received'
+  const messageClass = uid === currentFirebase.auth().currentUser.uid ? 'sent' : 'received'
   const [fetchedImage, setfetchedImage] = useState('/images/empty.jpg')
   const [senderData, setSenderData] = useState(undefined)
+  const [open, setOpen] = useState(false)
 
   const getImage = (filename) => {
-    const fileRef = firebase.storage().ref(filename)
-    fileRef
+    currentFirebase
+      .storage()
+      .ref(filename)
       .getDownloadURL()
       .then((path) => {
         // console.log(path)
@@ -26,37 +29,18 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
   }
 
   const getUser = (uid) => {
-    firebase
+    currentFirebase
       .firestore()
       .collection('users')
       .doc(uid)
       .get()
       .then((doc) => {
         setSenderData(doc.data())
-        // console.log(doc.data())
+      })
+      .catch((error) => {
+        console.log(error)
       })
   }
-
-  useEffect(() => {
-    attachment && getImage(attachment)
-  })
-
-  const useStyles = makeStyles((theme) => ({
-    paper: {
-      position: 'absolute',
-      top: '20vh',
-      bottom: '20vh',
-      right: '10vw',
-      left: '10vw',
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #232323',
-      borderRadius: '1rem',
-      // boxShadow: theme.shadows[5],
-      padding: theme.spacing(4, 3, 3)
-    }
-  }))
-  const classes = useStyles()
-  const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
     getUser(uid)
@@ -66,6 +50,10 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
   const handleClose = () => {
     setOpen(false)
   }
+
+  useEffect(() => {
+    attachment && getImage(attachment)
+  })
 
   return (
     <>
@@ -81,7 +69,7 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
         >
-          <div className={classes.paper}>
+          <div className={chatmessageStyles.modal}>
             <Avatar
               style={{ height: '70px', width: '70px', margin: '0 auto' }}
               src={
