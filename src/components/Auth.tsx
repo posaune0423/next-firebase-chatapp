@@ -12,10 +12,16 @@ const AuthProvider: FC = ({ children }) => {
       // called when login status change
       setCurrentUser(user)
       if (user) {
-        firebase.firestore().collection('users').doc(user.uid).set({
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL
+        const usersRef = firebase.firestore().collection('users').doc(user.uid)
+        usersRef.get().then((doc) => {
+          if (!doc.data()) {
+            usersRef.set({
+              displayName: user.displayName,
+              email: user.email,
+              photoURL: user.photoURL,
+              bio: ''
+            })
+          }
         })
       }
     })
