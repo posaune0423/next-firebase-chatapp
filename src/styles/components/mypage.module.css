@@ -1,0 +1,22 @@
+.root {
+  margin-top: 56px;
+  font-family: 'Open Sans', 'Noto Sans JP', sans-serif;
+}
+
+.body {
+  padding-top: 2rem;
+}
+
+.p {
+  font-size: 12px;
+  text-align: center;
+}
+
+.h2 {
+  text-align: center;
+}
+
+.progress {
+  text-align: center;
+  padding: 42vh 0;
+}
