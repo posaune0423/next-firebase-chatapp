@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import { AuthProvider } from '../components/Auth'
 import '../styles/global.css'
-import type { AppProps /*, AppContext */ } from 'next/app'
+import type { AppProps } from 'next/app'
+import { MuiThemeProvider } from '@material-ui/core/styles' // 追加
+import { theme } from '../lib/theme' // 追加
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -16,7 +18,9 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         />
       </Head>
       <AuthProvider>
-        <Component {...pageProps} />
+        <MuiThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </MuiThemeProvider>
       </AuthProvider>
     </>
   )
