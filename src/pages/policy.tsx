@@ -1,14 +1,9 @@
 import Head from 'next/head'
-import { useContext } from 'react'
-import { AuthContext } from '../components/Auth'
-// import { LogIn } from '../components/Buttons'
 import Container from '@material-ui/core/Container'
 import Header from '../components/Header'
 import privacyStyles from '../styles/components/privacy.module.css'
 
 export default function Home(): JSX.Element {
-  // const { currentUser } = useContext(AuthContext)
-
   return (
     <div className={privacyStyles.root}>
       <Head>
