@@ -17,7 +17,7 @@ export default function Home(): JSX.Element {
             Explains what information we collect and why, how we use it, and how to review and
             update it.
           </p>
-          <h2>Subtitle</h2>
+          <h2>Terms of Service</h2>
           <p>
             This service records your registered Google account information in the Firestore
             database. As this is an application for <a href="https://reactjs.org/">React</a> and
