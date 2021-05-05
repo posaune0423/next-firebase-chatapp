@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { LogIn } from '../components/Buttons'
 import TopStyles from '../styles/components/top.module.css'
 
-export default function Top() {
+export default function Top(): JSX.Element {
   return (
     <div className={TopStyles.top}>
       <Head>
