@@ -53,7 +53,7 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
 
   useEffect(() => {
     attachment && getImage(attachment)
-  })
+  }, [])
 
   return (
     <>
@@ -83,6 +83,10 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
             </h2>
             <p id="simple-modal-description" style={{ fontSize: '12px', textAlign: 'center' }}>
               {senderData && senderData.email}
+            </p>
+            <h4>Bio</h4>
+            <p>
+            {senderData && senderData.bio}
             </p>
           </div>
         </Modal>
