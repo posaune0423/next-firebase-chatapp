@@ -47,13 +47,13 @@ export default function Header(): JSX.Element {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <a href="/mypage/" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <a href="/mypage/" style={{ color: '#5f6368', textDecoration: 'none' }}>
               <AccountCircleIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
               mypage
             </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <a href="/policy/" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <a href="/policy/" style={{ color: '#5f6368', textDecoration: 'none' }}>
               <PolicyIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
               privacy policy
             </a>
@@ -61,7 +61,7 @@ export default function Header(): JSX.Element {
           <MenuItem onClick={handleClose}>
             <a
               href="https://github.com/posaune0423/next-firebase-chatapp"
-              style={{ color: 'inherit', textDecoration: 'none' }}
+              style={{ color: '#5f6368', textDecoration: 'none' }}
             >
               <GitHubIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
               source code
@@ -69,7 +69,7 @@ export default function Header(): JSX.Element {
           </MenuItem>
         </Menu>
         <Typography variant="h6" component="span" color="textPrimary" className={headerStyle.title}>
-          <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <a href="/" style={{ color: '#5f6368', textDecoration: 'none' }}>
             Curabitur
           </a>
         </Typography>
