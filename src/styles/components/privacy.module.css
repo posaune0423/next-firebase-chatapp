@@ -1,0 +1,17 @@
+.root {
+  color: #5f6368;
+  margin-top: 56px;
+}
+
+.root a {
+  text-decoration: none;
+  color: #3367d6;
+}
+
+.container {
+  width: 94%;
+}
+
+.body {
+  padding-top: 1rem;
+}
