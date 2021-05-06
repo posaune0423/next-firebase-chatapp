@@ -11,11 +11,12 @@ import indexStyles from '../../styles/components/index.module.css'
 export default function Room(): JSX.Element {
   const { currentUser } = useContext(AuthContext)
   const router = useRouter()
-  const [id, setId] = useState<number>()
+
+  const [id, setId] = useState<string>()
 
   useEffect(() => {
     if (router.asPath !== router.route) {
-      setId(Number(router.query.id))
+      setId(String(router.query.id))
     }
   }, [router])
 

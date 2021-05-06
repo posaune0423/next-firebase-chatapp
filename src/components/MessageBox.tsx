@@ -7,7 +7,7 @@ import { File } from '../types/util'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
 type PropsType = {
-  roomId: number
+  roomId: string
 }
 
 export default function MessageBox(props: PropsType): JSX.Element {

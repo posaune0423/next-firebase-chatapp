@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useContext } from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { FirebaseContext } from '../components/Firebase'
-import firebase from '../lib/firebase'
 import ChatMessage from './ChatMessage'
 import MessageBox from './MessageBox'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
 type PropsType = {
-  roomId: number
+  roomId: string
 }
 
 export default function ChatRoom(props: PropsType): JSX.Element {
