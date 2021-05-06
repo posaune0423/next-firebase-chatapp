@@ -4,11 +4,15 @@
 }
 
 .body {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .list {
   width: 100%;
   max-width: 360;
-  background-color: #fff
+  background-color: #fff;
+}
+.progress {
+  text-align: center;
+  padding: 42vh 0;
 }
