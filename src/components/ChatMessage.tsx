@@ -57,7 +57,7 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
 
   return (
     <>
-      <div className={`message ${messageClass}`}>
+      <div className={chatmessageStyles[messageClass]}>
         <Avatar
           src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'}
           className={chatmessageStyles.img}
@@ -85,9 +85,7 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
               {senderData && senderData.email}
             </p>
             <h4>Bio</h4>
-            <p>
-            {senderData && senderData.bio}
-            </p>
+            <p>{senderData && senderData.bio}</p>
           </div>
         </Modal>
         <div className={chatmessageStyles.div}>
@@ -100,27 +98,6 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
           )}
         </div>
       </div>
-      <style jsx>{`
-        .message {
-          display: flex;
-          align-items: center;
-        }
-
-        .sent {
-          flex-direction: row-reverse;
-        }
-
-        .sent > div {
-          color: #23223;
-          background: #e8e8e8;
-          align-self: flex-end;
-        }
-
-        .received > div {
-          color: black;
-          background: #e8e8e8;
-        }
-      `}</style>
     </>
   )
 }
