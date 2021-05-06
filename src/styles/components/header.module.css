@@ -9,3 +9,15 @@
 .title {
   flex-grow: 1;
 }
+
+.title a {
+  font-family: 'Open Sans', 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.a {
+  color: #5f6368;
+  text-decoration: none;
+}
