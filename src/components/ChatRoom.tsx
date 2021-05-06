@@ -1,16 +1,22 @@
 import React, { useRef, useEffect, useContext } from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { FirebaseContext } from '../components/Firebase'
+import firebase from '../lib/firebase'
 import ChatMessage from './ChatMessage'
 import MessageBox from './MessageBox'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
-export default function ChatRoom(): JSX.Element {
+type PropsType = {
+  roomId: number
+}
+
+export default function ChatRoom(props: PropsType): JSX.Element {
+  const roomId = props.roomId
   const { currentFirebase } = useContext(FirebaseContext)
 
   const firestore = currentFirebase.firestore()
   const messagesRef = firestore.collection('messages')
-  const query = messagesRef.orderBy('createdAt').limit(100)
+  const query = messagesRef.where('roomId', '==', roomId).orderBy('createdAt').limit(100)
   const [messages] = useCollectionData(query, { idField: 'id' })
   const dummy = useRef<HTMLElement>(null)
 
@@ -27,7 +33,7 @@ export default function ChatRoom(): JSX.Element {
       </main>
 
       <div>
-        <MessageBox />
+        <MessageBox roomId={roomId} />
       </div>
     </>
   )

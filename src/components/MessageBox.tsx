@@ -6,7 +6,12 @@ import ImageIcon from '@material-ui/icons/Image'
 import { File } from '../types/util'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
-export default function MessageBox(): JSX.Element {
+type PropsType = {
+  roomId: number
+}
+
+export default function MessageBox(props: PropsType): JSX.Element {
+  const roomId = props.roomId
   const { currentFirebase } = useContext(FirebaseContext)
   const [formValue, setFormValue] = useState<string>('')
   const [fileFormData, setfileFormData] = useState<File | undefined>(undefined)
@@ -26,6 +31,7 @@ export default function MessageBox(): JSX.Element {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL,
+      roomId: roomId,
       attachment: fileFormData ? fileFormData.name : null
     })
 
