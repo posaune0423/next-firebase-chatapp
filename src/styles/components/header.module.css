@@ -12,9 +12,9 @@
 
 .title a {
   font-family: 'Open Sans', 'Noto Sans JP', sans-serif;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
+  font-weight: bold !important;
+  color: black !important;
+  text-decoration: none !important;
 }
 
 .a {

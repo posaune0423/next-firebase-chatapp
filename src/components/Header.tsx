@@ -1,16 +1,37 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import firebase from '../lib/firebase'
 import { AppBar, Toolbar, IconButton, Typography, Menu, MenuItem } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import PolicyIcon from '@material-ui/icons/Policy'
 import ChatIcon from '@material-ui/icons/Chat'
-import { LogOut } from '../components/Buttons'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import headerStyle from '../styles/components/header.module.css'
 
-export default function Header(): JSX.Element {
+type PropsType = {
+  currentRoom?: string
+}
+
+export default function Header(props: PropsType): JSX.Element {
+  const currentRoom = props.currentRoom ? props.currentRoom : null
   const [anchorEl, setAnchorEl] = useState(null)
+  const router = useRouter()
   const open = Boolean(anchorEl)
+
+  function signOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log('successfully logged out')
+        router.push('/')
+      })
+      .catch((error) => {
+        console.log(`An error occurred (${error})`)
+      })
+  }
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
@@ -20,9 +41,17 @@ export default function Header(): JSX.Element {
     setAnchorEl(null)
   }
 
+  useEffect(() => {
+    console.log('eeeeeeeeee')
+  }, [currentRoom])
+
+
   return (
     <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
+        <Typography variant="h6" component="span" className={headerStyle.title}>
+          {currentRoom ? { currentRoom } : <a href="/">Curabitur</a>}
+        </Typography>
         <IconButton
           edge="start"
           className={headerStyle.menuButton}
@@ -56,13 +85,13 @@ export default function Header(): JSX.Element {
           <MenuItem onClick={handleClose}>
             <a href="/" className={headerStyle.a}>
               <ChatIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
-              rooms
+              Rooms
             </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <a href="/policy/" className={headerStyle.a}>
               <PolicyIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
-              privacy policy
+              Privacy policy
             </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
@@ -71,14 +100,16 @@ export default function Header(): JSX.Element {
               className={headerStyle.a}
             >
               <GitHubIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
-              source code
+              Source code
             </a>
           </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <span className={headerStyle.a} onClick={signOut}>
+              <ExitToAppIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
+              Logout
+            </span>
+          </MenuItem>
         </Menu>
-        <Typography variant="h6" component="span" className={headerStyle.title}>
-          <a href="/">Curabitur</a>
-        </Typography>
-        <LogOut />
       </Toolbar>
     </AppBar>
   )
