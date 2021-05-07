@@ -41,11 +41,6 @@ export default function Header(props: PropsType): JSX.Element {
     setAnchorEl(null)
   }
 
-  useEffect(() => {
-    console.log('eeeeeeeeee')
-  }, [currentRoom])
-
-
   return (
     <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
