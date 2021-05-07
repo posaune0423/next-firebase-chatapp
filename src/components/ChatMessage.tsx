@@ -81,9 +81,9 @@ export default function ChatMessage(props: firebase.firestore.DocumentData): JSX
             <h2 id="simple-modal-title" style={{ textAlign: 'center' }}>
               {senderData && senderData.displayName}
             </h2>
-            <p id="simple-modal-description" style={{ fontSize: '12px', textAlign: 'center' }}>
+            {/* <p id="simple-modal-description" style={{ fontSize: '12px', textAlign: 'center' }}>
               {senderData && senderData.email}
-            </p>
+            </p> */}
             <h4>Bio</h4>
             <p>{senderData && senderData.bio}</p>
           </div>

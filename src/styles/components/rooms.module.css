@@ -1,0 +1,18 @@
+.root {
+  margin-top: 56px;
+  font-family: 'Open Sans', 'Noto Sans JP', sans-serif;
+}
+
+.body {
+  padding-top: 1rem;
+}
+
+.list {
+  width: 100%;
+  max-width: 360;
+  background-color: #fff;
+}
+.progress {
+  text-align: center;
+  padding: 42vh 0;
+}

@@ -1,15 +1,37 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import firebase from '../lib/firebase'
 import { AppBar, Toolbar, IconButton, Typography, Menu, MenuItem } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import PolicyIcon from '@material-ui/icons/Policy'
-import { LogOut } from '../components/Buttons'
+import ChatIcon from '@material-ui/icons/Chat'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import headerStyle from '../styles/components/header.module.css'
 
-export default function Header(): JSX.Element {
+type PropsType = {
+  currentRoom?: string
+}
+
+export default function Header(props: PropsType): JSX.Element {
+  const currentRoom = props.currentRoom ? props.currentRoom : null
   const [anchorEl, setAnchorEl] = useState(null)
+  const router = useRouter()
   const open = Boolean(anchorEl)
+
+  function signOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log('successfully logged out')
+        router.push('/')
+      })
+      .catch((error) => {
+        console.log(`An error occurred (${error})`)
+      })
+  }
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget)
@@ -22,6 +44,9 @@ export default function Header(): JSX.Element {
   return (
     <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
+        <Typography variant="h6" component="span" className={headerStyle.title}>
+          {currentRoom ? { currentRoom } : <a href="/">Curabitur</a>}
+        </Typography>
         <IconButton
           edge="start"
           className={headerStyle.menuButton}
@@ -47,33 +72,39 @@ export default function Header(): JSX.Element {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <a href="/mypage/" style={{ color: '#5f6368', textDecoration: 'none' }}>
+            <a href="/mypage/" className={headerStyle.a}>
               <AccountCircleIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
               mypage
             </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <a href="/policy/" style={{ color: '#5f6368', textDecoration: 'none' }}>
+            <a href="/" className={headerStyle.a}>
+              <ChatIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
+              Rooms
+            </a>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <a href="/policy/" className={headerStyle.a}>
               <PolicyIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
-              privacy policy
+              Privacy policy
             </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <a
               href="https://github.com/posaune0423/next-firebase-chatapp"
-              style={{ color: '#5f6368', textDecoration: 'none' }}
+              className={headerStyle.a}
             >
               <GitHubIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
-              source code
+              Source code
             </a>
           </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <span className={headerStyle.a} onClick={signOut}>
+              <ExitToAppIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
+              Logout
+            </span>
+          </MenuItem>
         </Menu>
-        <Typography variant="h6" component="span" color="textPrimary" className={headerStyle.title}>
-          <a href="/" style={{ color: '#5f6368', textDecoration: 'none' }}>
-            Curabitur
-          </a>
-        </Typography>
-        <LogOut />
       </Toolbar>
     </AppBar>
   )

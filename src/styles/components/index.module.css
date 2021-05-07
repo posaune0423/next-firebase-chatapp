@@ -33,3 +33,7 @@
 .title {
   color: rgba(0, 0, 0, 0.87);
 }
+.progress {
+  text-align: center;
+  padding: 42vh 0;
+}
