@@ -1,7 +1,7 @@
 import { useContext } from 'react'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import { AuthContext } from '../../components/Auth'
 import RoomList from '../../components/RoomList'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import utilsStyles from '../../styles/utils.module.css'
 
 export default function Home(): JSX.Element {

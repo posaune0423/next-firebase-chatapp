@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import firebase from '../lib/firebase'
 import Avatar from '@material-ui/core/Avatar'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemText from '@material-ui/core/ListItemText'
+import firebase from '../lib/firebase'
 import Header from '../components/Header'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import roomsStyles from '../styles/components/rooms.module.css'
 
 export default function Rooms(): JSX.Element {
