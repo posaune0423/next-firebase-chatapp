@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
-import firebase from '../lib/firebase'
-import { FirebaseContext } from '../components/Firebase'
 import { Avatar } from '@material-ui/core'
 import Modal from '@material-ui/core/Modal'
+import firebase from '../lib/firebase'
+import { FirebaseContext } from '../components/Firebase'
 import chatmessageStyles from '../styles/components/chatmessage.module.css'
 
 export default function ChatMessage(props: firebase.firestore.DocumentData): JSX.Element {

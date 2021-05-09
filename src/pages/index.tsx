@@ -1,13 +1,14 @@
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
 import { AuthContext } from '../components/Auth'
-import RoomList from '../components/RoomList'
 import Top from '../components/Top'
 
 export default function Home(): JSX.Element {
   const { currentUser } = useContext(AuthContext)
+  const router = useRouter()
 
   if (currentUser) {
-    return <RoomList />
+    router.push('/rooms/')
   } else {
     return <Top />
   }

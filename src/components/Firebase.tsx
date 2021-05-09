@@ -1,6 +1,6 @@
-import firebase from '../lib/firebase'
-import 'firebase/storage'
 import { FC, createContext, useEffect, useState } from 'react'
+import 'firebase/storage'
+import firebase from '../lib/firebase'
 import { FirebaseContextProps } from '../types/util'
 
 const FirebaseContext = createContext<FirebaseContextProps>({ currentFirebase: firebase.app() })

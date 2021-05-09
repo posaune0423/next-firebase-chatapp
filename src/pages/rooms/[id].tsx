@@ -1,12 +1,13 @@
+import { useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../components/Auth'
-import { FirebaseProvider } from '../../components/Firebase'
-import ChatRoom from '../../components/ChatRoom'
-import Header from '../../components/Header'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { AuthContext } from '../../components/Auth'
+import ChatRoom from '../../components/ChatRoom'
+import { FirebaseProvider } from '../../components/Firebase'
+import Header from '../../components/Header'
 import indexStyles from '../../styles/components/index.module.css'
+import utilsStyles from '../../styles/utils.module.css'
 
 export default function Room(): JSX.Element {
   const { currentUser } = useContext(AuthContext)
@@ -37,7 +38,7 @@ export default function Room(): JSX.Element {
     )
   } else {
     return (
-      <div className={indexStyles.progress}>
+      <div className={utilsStyles.progress}>
         <CircularProgress style={{ width: '60px', height: '60px' }} />
       </div>
     )
