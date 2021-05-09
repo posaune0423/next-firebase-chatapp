@@ -6,19 +6,38 @@ import { AuthContext } from '../../components/Auth'
 import ChatRoom from '../../components/ChatRoom'
 import { FirebaseProvider } from '../../components/Firebase'
 import Header from '../../components/Header'
+import { FirebaseContext } from '../../components/Firebase'
+import firebase from '../../lib/firebase'
 import indexStyles from '../../styles/components/index.module.css'
 import utilsStyles from '../../styles/utils.module.css'
 
 export default function Room(): JSX.Element {
+  const { currentFirebase } = useContext(FirebaseContext)
   const { currentUser } = useContext(AuthContext)
   const router = useRouter()
 
   const [id, setId] = useState<string>()
+  const [room, setRoom] = useState<firebase.firestore.DocumentData>()
+
+  const getRoom = (uid) => {
+    currentFirebase
+      .firestore()
+      .collection('rooms')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setRoom(doc.data())
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   useEffect(() => {
     if (router.asPath !== router.route) {
       setId(String(router.query.id))
     }
+    getRoom(router.query.id)
   }, [router])
 
   if (currentUser) {
@@ -27,7 +46,7 @@ export default function Room(): JSX.Element {
         <Head>
           <title>Curabitur | Chat Room</title>
         </Head>
-        <Header />
+        <Header currentRoom={room && room.name} />
 
         <section className={indexStyles.appSection}>
           <FirebaseProvider>

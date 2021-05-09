@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import firebase from '../lib/firebase'
 import { AppBar, Toolbar, IconButton, Typography, Menu, MenuItem } from '@material-ui/core'
@@ -45,7 +45,7 @@ export default function Header(props: PropsType): JSX.Element {
     <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
         <Typography variant="h6" component="span" className={headerStyle.title}>
-          {currentRoom ? { currentRoom } : <a href="/">Curabitur</a>}
+          {currentRoom ? <a href="/rooms/">{currentRoom}</a> : <a href="/">Curabitur</a>}
         </Typography>
         <IconButton
           edge="start"
