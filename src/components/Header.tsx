@@ -78,7 +78,7 @@ export default function Header(props: PropsType): JSX.Element {
             </a>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <a href="/" className={headerStyle.a}>
+            <a href="/rooms/" className={headerStyle.a}>
               <ChatIcon style={{ verticalAlign: 'middle', marginRight: '1rem' }} />
               Rooms
             </a>
