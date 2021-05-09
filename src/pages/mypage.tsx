@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import { FirebaseContext } from '../components/Firebase'
 import Header from '../components/Header'
 import mypageStyles from '../styles/components/mypage.module.css'
+import utilsStyles from '../styles/utils.module.css'
 
 export default function Home(): JSX.Element {
   const { currentUser } = useContext(AuthContext)
@@ -94,7 +95,7 @@ export default function Home(): JSX.Element {
     )
   } else {
     return (
-      <div className={mypageStyles.progress}>
+      <div className={utilsStyles.progress}>
         <CircularProgress style={{ width: '60px', height: '60px' }} />
       </div>
     )
