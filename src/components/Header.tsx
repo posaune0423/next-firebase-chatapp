@@ -45,7 +45,7 @@ export default function Header(props: PropsType): JSX.Element {
     <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
         <Typography variant="h6" component="span" className={headerStyle.title}>
-          {currentRoom ? <a href="/rooms/">{currentRoom}</a> : <a href="/">Curabitur</a>}
+          <a href="/rooms/">{currentRoom ? currentRoom : 'Curabitur'}</a>
         </Typography>
         <IconButton
           edge="start"
