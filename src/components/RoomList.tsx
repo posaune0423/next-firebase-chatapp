@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import firebase from '../lib/firebase'
 import Header from '../components/Header'
 import roomsStyles from '../styles/components/rooms.module.css'
+import utilsStyles from '../styles/utils.module.css'
 
 export default function Rooms(): JSX.Element {
   const query = firebase.firestore().collection('rooms')
@@ -16,7 +17,7 @@ export default function Rooms(): JSX.Element {
 
   if (loading)
     return (
-      <div className={roomsStyles.progress}>
+      <div className={utilsStyles.progress}>
         <CircularProgress />
       </div>
     )
