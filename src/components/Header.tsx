@@ -10,11 +10,11 @@ import ChatIcon from '@material-ui/icons/Chat'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import headerStyle from '../styles/components/header.module.css'
 
-type PropsType = {
+type Props = {
   currentRoom?: string
 }
 
-export default function Header(props: PropsType): JSX.Element {
+export default function Header(props: Props): JSX.Element {
   const currentRoom = props.currentRoom ? props.currentRoom : null
   const [anchorEl, setAnchorEl] = useState(null)
   const router = useRouter()

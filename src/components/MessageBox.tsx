@@ -6,11 +6,11 @@ import ImageIcon from '@material-ui/icons/Image'
 import { File } from '../types/util'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
-type PropsType = {
+type Props = {
   roomId: string
 }
 
-export default function MessageBox(props: PropsType): JSX.Element {
+export default function MessageBox(props: Props): JSX.Element {
   const roomId = props.roomId
   const { currentFirebase } = useContext(FirebaseContext)
   const [formValue, setFormValue] = useState<string>('')
