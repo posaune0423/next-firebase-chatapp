@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react'
+import { useRef, useEffect, useContext } from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { FirebaseContext } from '../components/Firebase'
 import ChatMessage from './ChatMessage'
