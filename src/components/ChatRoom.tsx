@@ -13,19 +13,29 @@ export default function ChatRoom(props: Props): JSX.Element {
   const roomId = props.roomId
   const { currentFirebase } = useContext(FirebaseContext)
 
-  const firestore = currentFirebase.firestore()
-  const messagesRef = firestore.collection('messages')
-  const query = messagesRef.where('roomId', '==', roomId).orderBy('createdAt').limit(100)
+  const query = currentFirebase
+    .firestore()
+    .collection('messages')
+    .where('roomId', '==', roomId)
+    .orderBy('createdAt')
+    .limit(100)
   const [messages] = useCollectionData(query, { idField: 'id' })
+
+  const windowHeight = window.parent.screen.height
   const dummy = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    dummy.current.scrollIntoView({ behavior: 'smooth' })
+    const mainHeight = document.getElementById('main').getBoundingClientRect().height
+    const space = Math.floor(windowHeight * 0.92 - 56)
+
+    if (space < mainHeight) {
+      dummy.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [messages])
 
   return (
     <>
-      <main className={chatroomStyles.main}>
+      <main className={chatroomStyles.main} id="main">
         {messages && messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
         <span ref={dummy}></span>
