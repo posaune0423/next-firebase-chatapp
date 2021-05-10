@@ -21,7 +21,7 @@ export default function Home(): JSX.Element {
           <p>
             This service records your registered Google account information in the Firestore
             database. As this is an application for <a href="https://reactjs.org/">React</a> and
-            <a href="https://firebase.google.com/docs/firestore">Firebase </a>
+            <a href="https://firebase.google.com/docs/firestore"> Firebase </a>
             study, there is no secondary use of this information. If you need to delete your data,
             please contact us at <a href="https://github.com/posaune0423">this Github account</a>.
           </p>
