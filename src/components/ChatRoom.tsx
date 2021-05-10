@@ -5,11 +5,11 @@ import ChatMessage from './ChatMessage'
 import MessageBox from './MessageBox'
 import chatroomStyles from '../styles/components/chatroom.module.css'
 
-type PropsType = {
+type Props = {
   roomId: string
 }
 
-export default function ChatRoom(props: PropsType): JSX.Element {
+export default function ChatRoom(props: Props): JSX.Element {
   const roomId = props.roomId
   const { currentFirebase } = useContext(FirebaseContext)
 

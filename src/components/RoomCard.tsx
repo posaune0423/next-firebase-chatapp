@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
 import firebase from '../lib/firebase'
 import { FirebaseContext } from '../components/Firebase'
 import Avatar from '@material-ui/core/Avatar'
@@ -7,11 +6,11 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemText from '@material-ui/core/ListItemText'
 
-type PropsType = {
+type Props = {
   room: firebase.firestore.DocumentData
 }
 
-export default function roomCard(props: PropsType): JSX.Element {
+export default function roomCard(props: Props): JSX.Element {
   const room = props.room
   const { currentFirebase } = useContext(FirebaseContext)
   const [latestMessage, setlatestMessage] = useState('')
