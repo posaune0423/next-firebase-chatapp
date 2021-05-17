@@ -43,7 +43,7 @@ export default function Home(): JSX.Element {
         bio: value
       })
       .then((result) => {
-        console.log(result)
+        // console.log(result)
       })
       .catch((err) => {
         console.log(err)
