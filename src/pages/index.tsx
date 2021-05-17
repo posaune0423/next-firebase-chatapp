@@ -9,6 +9,7 @@ export default function Home(): JSX.Element {
 
   if (currentUser) {
     router.push('/rooms/')
+    return <></>
   } else {
     return <Top />
   }
